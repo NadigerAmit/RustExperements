@@ -59,6 +59,36 @@ amit@DESKTOP-9LTOFUP:~/OmPracticeRust/SP$ valgrind --tool=memcheck ./mem_alloc_a
 ==2758== For lists of detected and suppressed errors, rerun with: -s
 ==2758== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 */
+
+/*
+If you comment "Vec::from_raw_parts(ptr, 10, 10);" from above code then it leads to memory leak.
+
+amit@DESKTOP-9LTOFUP:~/OmPracticeRust/SP$ valgrind --tool=memcheck ./mem_alloc_and_forge
+==2795== Memcheck, a memory error detector
+==2795== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==2795== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==2795== Command: ./mem_alloc_and_forget
+==2795==
+==2795== error calling PR_SET_PTRACER, vgdb might block
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+==2795==
+==2795== HEAP SUMMARY:
+==2795==     in use at exit: 10 bytes in 1 blocks
+==2795==   total heap usage: 12 allocs, 11 frees, 6,263 bytes allocated
+==2795==
+==2795== LEAK SUMMARY:
+==2795==    definitely lost: 10 bytes in 1 blocks
+==2795==    indirectly lost: 0 bytes in 0 blocks
+==2795==      possibly lost: 0 bytes in 0 blocks
+==2795==    still reachable: 0 bytes in 0 blocks
+==2795==         suppressed: 0 bytes in 0 blocks
+==2795== Rerun with --leak-check=full to see details of leaked memory
+==2795==
+==2795== For lists of detected and suppressed errors, rerun with: -s
+==2795== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+amit@DESKTOP-9LTOFUP:~/OmPracticeRust/SP$ t 
+*/
+
 /*
 The line Vec::from_raw_parts(ptr, 10, 10); in the code snippet is used to deallocate the memory block that was previously allocated using alloc.
 
