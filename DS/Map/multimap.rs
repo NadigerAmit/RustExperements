@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+/*use std::collections::HashMap;
 
 fn main() {
     // Create an empty multi-map
@@ -6,6 +6,7 @@ fn main() {
 
     // Insert values into the multi-map
     multi_map.entry("Key1".to_string()).or_insert(Vec::new()).push("Value1".to_string());
+	multi_map.entry("Key1".to_string()).or_insert(Vec::new()).push("Value1".to_string());
     multi_map.entry("Key1".to_string()).or_insert(Vec::new()).push("Value2".to_string());
     multi_map.entry("Key2".to_string()).or_insert(Vec::new()).push("Value3".to_string());
     multi_map.entry("Key2".to_string()).or_insert(Vec::new()).push("Value4".to_string());
@@ -22,6 +23,88 @@ fn main() {
         }
     }
 }
+
+This code has a problem of storing the multile same values for the same key , functioning same as Vector of pair w.r.t storage.
+*/
+
+    // Below code takes care of avoiding adding the multiple same values for same key.
+
+use std::collections::HashMap;
+
+fn main() {
+    // Create an empty multi-map
+    let mut multi_map: HashMap<String, Vec<String>> = HashMap::new();
+
+    // Insert values into the multi-map
+    multi_map
+        .entry("Key1".to_string())
+        .or_insert_with(Vec::new)
+        .push("Value1".to_string());
+
+    if let Some(values) = multi_map.get_mut("Key1") {
+        // Check if the value already exists before inserting
+        if !values.contains(&"Value2".to_string()) {
+            values.push("Value2".to_string());
+        }
+    }
+	if let Some(values) = multi_map.get_mut("Key1") {
+        // Check if the value already exists before inserting
+        if !values.contains(&"Value3".to_string()) {
+            values.push("Value3".to_string());
+        }
+    }
+	
+	if let Some(values) = multi_map.get_mut("Key1") {
+        // Check if the value already exists before inserting
+        if !values.contains(&"Value3".to_string()) {
+            values.push("Value3".to_string());
+        }
+    }
+	
+	if let Some(values) = multi_map.get_mut("Key1") {
+        // Check if the value already exists before inserting
+        if !values.contains(&"Value3".to_string()) {
+            values.push("Value3	".to_string());
+        }
+    }
+	println!("--------------------");
+
+    for (k,v) in &multi_map {
+		println!("{} -> {:?}",k,v);
+	}
+	println!("--------------------");
+    multi_map
+        .entry("Key2".to_string())
+        .or_insert_with(Vec::new)
+        .push("Value3".to_string());
+
+    if let Some(values) = multi_map.get_mut("Key2") {
+        // Check if the value already exists before inserting
+        if !values.contains(&"Value4".to_string()) {
+            values.push("Value4".to_string());
+        }
+    }
+
+    // Access values from the multi-map
+    if let Some(values) = multi_map.get("Key1") {
+        for value in values {
+            println!("Value: {}", value);
+        }
+    }
+    if let Some(values) = multi_map.get("Key2") {
+        for value in values {
+            println!("Value: {}", value);
+        }
+    }
+}
+
+/*
+Value: Value1
+Value: Value2
+Value: Value3
+Value: Value4
+
+*/
 /*
 Value: Value1
 Value: Value2
