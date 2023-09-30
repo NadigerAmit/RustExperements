@@ -5,9 +5,9 @@ fn main() {
     v.push(2);
     v.push(3);
     v.push(4);
-	  reverseVector(&mut v);
-	  reverseVector(&mut v1);
-	  println!("Reverse vector V = {:?}",v);
+    reverseVector(&mut v);
+    reverseVector(&mut v1);
+    println!("Reverse vector V = {:?}",v);
     println!("Reverse vector V1 = {:?}",v1);
 }
 
@@ -15,12 +15,12 @@ fn reverseVector(v:&mut Vec<i32>) {
     let mut len = v.len() ; 
     for i in 0..v.len() {
     	if i >=len-1 {
-    		break;
+    	    break;
     	}
     	// below is swap logic
-		let mut t = v[len-1];
-		v[len-1]= v[i];
-		v[i] = t;
+	let mut t = v[len-1];
+	v[len-1]= v[i];
+	v[i] = t;
     	len = len -1;
     }
 }
