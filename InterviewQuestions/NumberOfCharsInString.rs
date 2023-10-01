@@ -20,7 +20,7 @@ fn count_chars_in_String(data:&str) -> HashMap<char,u32>{
         if let Some(values) = map.get(&i) {
             map.insert(i,values+1)
         } else {
-        	map.insert(i,1)
+            map.insert(i,1)
         };
     }
     println!("String received = {}",data);
