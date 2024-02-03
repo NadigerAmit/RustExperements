@@ -1,5 +1,4 @@
-use anyhow::{Error, Result};
-use anyhow::Context;
+use anyhow::{Error, Result, Context};
 
 fn main() {
     if let Err(err) = run_application() {
