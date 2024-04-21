@@ -1,3 +1,14 @@
+/*
+// Most concise way :
+fn main() {
+	let str = String::from("JaiShreeRam");
+	let rev_str:String = str.chars().rev().collect();
+	println!("str  {}",str);
+	println!("rev_str = {}",rev_str);
+}
+*/
+
+// Below is the traditional way 
 use std::io;
 
 fn main() {
@@ -24,3 +35,4 @@ fn reverse_vec(string_vec:&mut Vec<char>)  {
     	
     }
 }
+
