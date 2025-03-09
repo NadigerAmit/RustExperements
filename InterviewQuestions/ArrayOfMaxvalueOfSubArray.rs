@@ -39,7 +39,7 @@ fn main() {
         let n1 = v[i];
         let n2 = v[i+1];
         let n3 = v[i+2];
-        let m = getMaxOfThree(n1 as i32 ,n2 as i32 ,n3 as i32);
+        let m = getMaxOfThree(n1 ,n2 ,n3 );
         r.push(m);
     }
 }
